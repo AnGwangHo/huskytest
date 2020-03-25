@@ -14,8 +14,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.0.0
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
-          repository: ${{ github.repository }}
+          node-version: ${{ matrix.node-version }}
         
       - name: npm install
         run: npm install
@@ -33,7 +36,7 @@ jobs:
             await github.pulls.createReview({
               ...context.repo,
               pull_number,
-              body:"테스트코드를 다시 확인해주세요. ",
+              body:"테스트코드를 다시 확인해주세요.",
               event:"REQUEST_CHANGES"
             })
             await github.pulls.update({
