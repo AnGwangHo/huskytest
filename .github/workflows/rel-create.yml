@@ -1,9 +1,8 @@
-name: PR Test
+name: release branch create
 
 on:
-  pull_request:
-    types: [opened, reopened]
-    branches: [develop, feature, release]
+  release:
+    types: [created]
 
 jobs:
   Run-Jest:
