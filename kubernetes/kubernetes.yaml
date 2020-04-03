@@ -1,0 +1,66 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-react
+  name: nginx-react
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-react
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: nginx-react
+    spec:
+      containers:
+        - image: gcr.io/yapp16-findzone/github.com/angwangho/huskytest
+          imagePullPolicy: IfNotPresent
+          name: react-nginx-sha256-1
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  labels:
+    app: nginx-react
+  name: nginx-react-hpa-f0xo
+  namespace: default
+spec:
+  maxReplicas: 5
+  metrics:
+    - resource:
+        name: cpu
+        targetAverageUtilization: 80
+      type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx-react
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx-react
+  name: nginx-react-service
+  namespace: default
+spec:
+  clusterIP: 10.0.4.202
+  externalTrafficPolicy: Cluster
+  ports:
+    - nodePort: 31160
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: nginx-react
+  sessionAffinity: None
+  type: LoadBalancer
