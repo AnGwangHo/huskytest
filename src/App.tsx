@@ -19,7 +19,7 @@ function App() {
           Learn React
         </a>
         <span>추가해버리기</span>
-        <span>추가해버리기222</span>
+        <span>추가해버리기2223333</span>
       </header>
     </div>
   );
