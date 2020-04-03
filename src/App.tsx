@@ -18,6 +18,7 @@ function App() {
         >
           Learn React
         </a>
+        <span>추가해버리기</span>
       </header>
     </div>
   );
