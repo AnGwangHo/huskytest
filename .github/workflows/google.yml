@@ -65,10 +65,6 @@ jobs:
         curl -o kustomize --location https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
         chmod u+x ./kustomize
 
-    - name: check kubectl get secrets
-      run: |
-        kubectl get secrets
-
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |
