@@ -19,6 +19,7 @@ function App() {
           Learn React
         </a>
         <span>없을때 생성 테스트</span>
+        <span>키 변경</span>
       </header>
     </div>
   );
