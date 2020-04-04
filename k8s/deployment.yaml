@@ -10,7 +10,7 @@ spec:
   template:
     metadata:
       labels:
-        app: react-nginx-deployment
+        run: react-nginx-deployment
     spec:
       containers:
         - name: react-nginx-deployment
