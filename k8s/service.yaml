@@ -3,12 +3,12 @@ kind: Service
 metadata:
   name: react-test
   labels:
-    run: react-test
+    app: react-test
 spec:
   ports:
     - name: "80"
       port: 80
       targetPort: 80
   selector:
-    run: react-nginx-deployment
+    app: react-nginx-deployment
   type: LoadBalancer

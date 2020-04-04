@@ -6,11 +6,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      run: react-nginx-deployment
+        app: react-nginx-deployment
   template:
     metadata:
       labels:
-        run: react-nginx-deployment
+        app: react-nginx-deployment
     spec:
       containers:
         - name: react-nginx-deployment
