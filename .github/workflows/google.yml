@@ -22,9 +22,9 @@ env:
   GITHUB_SHA: ${{ github.sha }}
   GKE_ZONE: ${{ secrets.GKE_ZONE }}
   GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
-  IMAGE: ${{ secrets.GKE_NAME.IMAGE }}
+  IMAGE: ${{ secrets.IMAGE }}
   REGISTRY_HOSTNAME: ${{ secrets.REGISTRY_HOSTNAME }}
-  DEPLOYMENT_NAME: react-nginx-deployment
+  DEPLOYMENT_NAME: ${{ secrets.DEPLOYMENT_NAME }}
 
 jobs:
   setup-build-publish-deploy:
