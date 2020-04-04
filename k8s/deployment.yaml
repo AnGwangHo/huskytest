@@ -6,14 +6,14 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: reactTest
+      app: react-test
   template:
     metadata:
       labels:
-        app: reactTest
+        app: react-test
     spec:
       containers:
-        - name: reactTest
+        - name: react-test
           image: gcr.io/yapp16-findzone/react-test:latest
           ports:
             - containerPort: 80
