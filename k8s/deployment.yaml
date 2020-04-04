@@ -4,6 +4,9 @@ metadata:
   name: react-nginx-deployment
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+        app: react-test
   template:
     metadata:
       labels:
