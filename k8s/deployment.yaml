@@ -4,16 +4,13 @@ metadata:
   name: react-nginx-deployment
 spec:
   replicas: 3
-  selector:
-    matchLabels:
-        app: react-nginx-deployment
   template:
     metadata:
       labels:
-        app: react-nginx-deployment
+        app: react-test
     spec:
       containers:
-        - name: react-nginx-deployment
+        - name: react-test
           image: gcr.io/yapp16-findzone/react-test:latest
           ports:
             - containerPort: 80
