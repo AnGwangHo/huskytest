@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: react-test
+  template:
+    metadata:
+      labels:
+        app: react-test
+    spec:
+      containers:
+        - name: react-test
+          image: gcr.io/yapp16-findzone/react-test:latest
+          ports:
+            - containerPort: 80

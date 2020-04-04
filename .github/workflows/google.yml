@@ -21,10 +21,10 @@ env:
   GKE_EMAIL: ${{ secrets.GKE_EMAIL }}
   GITHUB_SHA: ${{ github.sha }}
   GKE_ZONE: asia-east1-a
-  GKE_CLUSTER: example-gke-cluster
-  IMAGE: gke-test
+  GKE_CLUSTER: react-test-cluster
+  IMAGE: react-test
   REGISTRY_HOSTNAME: gcr.io
-  DEPLOYMENT_NAME: gke-test
+  DEPLOYMENT_NAME: react-test
 
 jobs:
   setup-build-publish-deploy:
@@ -62,13 +62,13 @@ jobs:
     # Set up kustomize
     - name: Set up Kustomize
       run: |
-        gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE --project $GKE_PROJECT
         curl -o kustomize --location https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
         chmod u+x ./kustomize
 
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |
+        gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE --project $GKE_PROJECT
         ./kustomize edit set image $REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:${GITHUB_SHA}
         ./kustomize build . | kubectl apply -f -
         kubectl rollout status deployment/$DEPLOYMENT_NAME
