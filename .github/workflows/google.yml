@@ -20,11 +20,11 @@ env:
   GKE_PROJECT: ${{ secrets.GKE_PROJECT }}
   GKE_EMAIL: ${{ secrets.GKE_EMAIL }}
   GITHUB_SHA: ${{ github.sha }}
-  GKE_ZONE: asia-east1-a
-  GKE_CLUSTER: react-test-cluster
-  IMAGE: react-test
-  REGISTRY_HOSTNAME: gcr.io
-  DEPLOYMENT_NAME: react-nginx-deployment
+  GKE_ZONE: ${{ secrets.GKE_ZONE }}
+  GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
+  IMAGE: ${{ secrets.GKE_NAME.IMAGE }}
+  REGISTRY_HOSTNAME: ${{ secrets.REGISTRY_HOSTNAME }}
+  DEPLOYMENT_NAME: ${{ secrets.GKE_NAME.DEPLOYMENT_NAME }}
 
 jobs:
   setup-build-publish-deploy:
