@@ -2,11 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: react-test
+  labes:
+    run: react-test
 spec:
   ports:
     - name: "80"
       port: 80
       targetPort: 80
   selector:
-    app: react-nginx-deployment
+    app: react-test
   type: LoadBalancer
