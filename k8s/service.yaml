@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: react-test
-  labes:
+  labels:
     run: react-test
 spec:
   ports:
