@@ -36,7 +36,7 @@ jobs:
     
     - name: Get the version
       id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      run: echo ${GITHUB_REF/refs\/tags\//}
 
     # Configure docker to use the gcloud command-line tool as a credential helper
     - run: |
