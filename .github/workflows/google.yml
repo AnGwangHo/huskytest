@@ -1,10 +1,10 @@
 name: Build and Deploy to GKE
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches: 
       - master
-    
 
 # Environment variables available to all jobs and steps in this workflow
 env:
@@ -33,10 +33,6 @@ jobs:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
         service_account_email: ${{ secrets.GKE_EMAIL }}
         service_account_key: ${{ secrets.GKE_KEY }}
-    
-    - name: Get the version
-      id: get_version
-      run: $(echo ${GITHUB_REF:10})
 
     # Configure docker to use the gcloud command-line tool as a credential helper
     - run: |
