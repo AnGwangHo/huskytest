@@ -23,7 +23,7 @@ env:
   GKE_ZONE: ${{ secrets.GKE_ZONE }}
   GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
   IMAGE: react-test
-  REGISTRY_HOSTNAME: gcr.io
+  REGISTRY_HOSTNAME: ${{ secrets.REGISTRY_HOSTNAME }}
   DEPLOYMENT_NAME: react-nginx-deployment
 
 jobs:
