@@ -15,8 +15,8 @@ env:
   IMAGE: ${{ secrets.IMAGE }}
   REGISTRY_HOSTNAME: ${{ secrets.REGISTRY_HOSTNAME }}
   DEPLOYMENT_NAME: ${{ secrets.DEPLOYMENT_NAME }}
-  TEST_A: ${{ secrets.TEST_A }}
-  TEST_B: ${{ secrets.TEST_B }}
+  TEST_A: CCCC
+  TEST_B: DDDD
 
 jobs:
   setup-build-publish-deploy:
@@ -29,6 +29,6 @@ jobs:
 
     - name: edit env
       run: | 
-        sed -i '1s/=/&TEST_A/' .env.production
-        sed -i '2s/=/&TEST_B/' .env.production
+        sed -i '1s/=/&"$TEST_A"/' .env.production
+        sed -i '2s/=/&"$TEST_B"/' .env.production
         cat .env.production
