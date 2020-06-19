@@ -29,6 +29,6 @@ jobs:
 
     - name: edit env
       run: | 
-        sed -i '1s/=/$TEST_A/' .env.production
-        sed -i '2s/=/$TEST_B/' .env.production
+        sed -i '1s/=/&TEST_A/' .env.production
+        sed -i '2s/=/&TEST_B/' .env.production
         cat .env.production
