@@ -1,0 +1,33 @@
+name: Build and Deploy to GKE
+
+on:
+  push:
+    branches: 
+      - master
+
+# Environment variables available to all jobs and steps in this workflow
+env:
+  GKE_PROJECT: ${{ secrets.GKE_PROJECT }}
+  GKE_EMAIL: ${{ secrets.GKE_EMAIL }}
+  GITHUB_SHA: ${{ github.sha }}
+  GKE_ZONE: ${{ secrets.GKE_ZONE }}
+  GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
+  IMAGE: ${{ secrets.IMAGE }}
+  REGISTRY_HOSTNAME: ${{ secrets.REGISTRY_HOSTNAME }}
+  DEPLOYMENT_NAME: ${{ secrets.DEPLOYMENT_NAME }}
+  TEST_A: ${{ secrets.TEST_A }}
+  TEST_B: ${{ secrets.TEST_B }}
+
+jobs:
+  setup-build-publish-deploy:
+    name: Setup, Build, Publish, and Deploy
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: edit env
+      run: |
+      sed -i '1s//${TEST_A}/' .env.production
+      sed -i '2s//${TEST_B}/' .env.production
